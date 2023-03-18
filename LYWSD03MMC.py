@@ -67,9 +67,9 @@ def myMQTTPublish(topic,jsonMessage):
 		messageDict = json.loads(jsonMessage)
 		for subtopic in subtopics:
 			print("Topic:",subtopic)
-			MQTTClient.publish(topic + "/" + subtopic,messageDict[subtopic],0)
+			MQTTClient.publish(topic + "/" + subtopic,messageDict[subtopic],qos=0,retain=True)
 	if not mqttJSONDisabled:
-		MQTTClient.publish(topic,jsonMessage,1)
+		MQTTClient.publish(topic,jsonMessage,qos=1,retain=True)
 
 
 def signal_handler(sig, frame):
